@@ -24,8 +24,8 @@ public class TestSprintBo {
         int count = sprintBo.create( sprint );
         assertEquals( 1, count );
 
-        Sprint readRecord = sprintBo.read( sprint.getBacklogId(), sprint.getDoingId(), sprint.getDoneId() );
-        assertNotNull( readRecord.getBacklogId() );
+        Sprint readRecord = sprintBo.read( sprint.getKey() );
+        assertNotNull( readRecord.getKey() );
 
         TestSprintDao.compareRecords( sprint, readRecord );
 
@@ -42,10 +42,10 @@ public class TestSprintBo {
         count = sprintBo.update( sprint );
         assertEquals( 1, count );
 
-        count = sprintBo.delete( sprint.getBacklogId(), sprint.getDoingId(), sprint.getDoneId());
+        count = sprintBo.delete( sprint.getKey());
         assertEquals( 1, count );
 
-        readRecord = sprintBo.read( sprint.getBacklogId(), sprint.getDoingId(), sprint.getDoneId());
+        readRecord = sprintBo.read( sprint.getKey());
         assertNull( readRecord );
 
     }

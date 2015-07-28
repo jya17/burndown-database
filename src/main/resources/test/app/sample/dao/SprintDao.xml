@@ -4,9 +4,10 @@
 <mapper namespace="test.app.sample.dao.SprintDao">
 
     <resultMap id="SprintMapper" type="test.app.sample.domain.Sprint">
-        <result column ="BACKLOG_ID"          property = "backlogId" />
+        <result column ="KEY"                 property = "key" />
         <result column ="TITLE"               property = "title" />
         <result column ="DESCRIPTION"         property = "description" />
+        <result column ="BACKLOG_ID"          property = "backlogId" />
         <result column ="DOING_ID"            property = "doingId" />
         <result column ="DONE_ID"             property = "doneId" />
         <result column ="START_DATE"          property = "startDate" />
@@ -19,18 +20,18 @@
     </select>
 
     <insert id="create" parameterType="test.app.sample.domain.Sprint">
-        <selectKey resultType="_long" keyProperty="backlogId" order="BEFORE">
+        <selectKey resultType="_long" keyProperty="key" order="BEFORE">
             select SPRINT_SEQ.nextval from dual
         </selectKey>
         insert into SPRINT
         (
-            BACKLOG_ID , TITLE , DESCRIPTION , DOING_ID , DONE_ID , 
-            START_DATE , END_DATE
+            KEY , TITLE , DESCRIPTION , BACKLOG_ID , DOING_ID , 
+            DONE_ID , START_DATE , END_DATE
         )
         values
         (
-            #{backlogId} , #{title} , #{description} , #{doingId} , #{doneId} , 
-            #{startDate} , #{endDate}
+            #{key} , #{title} , #{description} , #{backlogId} , #{doingId} , 
+            #{doneId} , #{startDate} , #{endDate}
         )
     </insert>
 
@@ -50,14 +51,15 @@
 
     <update id="update" parameterType="test.app.sample.domain.Sprint">
         update SPRINT set
-            BACKLOG_ID                          = #{backlogId} ,
+            KEY                                 = #{key} ,
             TITLE                               = #{title} ,
             DESCRIPTION                         = #{description} ,
+            BACKLOG_ID                          = #{backlogId} ,
             DOING_ID                            = #{doingId} ,
             DONE_ID                             = #{doneId} ,
             START_DATE                          = #{startDate} ,
             END_DATE                            = #{endDate}
-        where BACKLOG_ID = #{backlogId}
+        where KEY = #{key}
     </update>
 
     <delete id="delete" parameterType="map">

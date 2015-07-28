@@ -65,10 +65,10 @@ public class SprintBo {
         return result;
     }
 
-    public int delete( Long backlogId, Long doingId, Long doneId ) throws BoException {
+    public int delete( Long key ) throws BoException {
         SqlSession session = null;
         int result = 0;
-        String where = "BACKLOG_ID='" + backlogId + "' and " + "DOING_ID='" + doingId + "' and " + "DONE_ID='" + doneId + "' ";
+        String where = "KEY='" + key + "' ";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put( "where", where );
 
@@ -90,10 +90,10 @@ public class SprintBo {
         return result;
     }
 
-    public Sprint read( Long backlogId, Long doingId, Long doneId ) throws BoException {
+    public Sprint read( Long key ) throws BoException {
         SqlSession session = null;
         Sprint result;
-        String where = "BACKLOG_ID='" + backlogId + "' and " + "DOING_ID='" + doingId + "' and " + "DONE_ID='" + doneId + "' ";
+        String where = "KEY='" + key + "' ";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put( "where", where );
 

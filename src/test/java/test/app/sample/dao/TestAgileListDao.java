@@ -30,16 +30,16 @@ public class TestAgileListDao {
         try {
 
             AgileList agileList = TestAgileListDao.createAgileList();
-            String where = "STORY_ID='" + agileList.getStoryId() + "' ";
+            String where = "KEY='" + agileList.getKey() + "' ";
             Map<String, Object> map = new HashMap<String, Object>();
             map.put( "where", where );
 
             int count = agileListDao.create( agileList );
             assertEquals( 1, count );
-            assertNotNull( agileList.getStoryId() );
+            assertNotNull( agileList.getKey() );
 
             AgileList readRecord = agileListDao.read( map );
-            assertNotNull( readRecord.getStoryId() );
+            assertNotNull( readRecord.getKey() );
 
             compareRecords( agileList, readRecord );
 
@@ -52,7 +52,7 @@ public class TestAgileListDao {
             assertEquals( 1, count );
 
             readRecord = agileListDao.read( map );
-            assertNotNull( readRecord.getStoryId() );
+            assertNotNull( readRecord.getKey() );
 
             compareRecords( agileList, readRecord );
 
@@ -73,8 +73,8 @@ public class TestAgileListDao {
     public static AgileList createAgileList() {
         AgileList agileList = new AgileList();
 
-        agileList.setStoryId( (long) 0 );
         agileList.setTitle( randomString( "title", 40 ) );
+        agileList.setStoryId( (long) 0 );
 
         return agileList;
     }
@@ -82,12 +82,14 @@ public class TestAgileListDao {
     public static void compareRecords( AgileList agileList, AgileList readRecord ) {
 
         assertEquals( agileList.getTitle(), readRecord.getTitle() );
+        assertEquals( agileList.getStoryId(), readRecord.getStoryId() );
 
     }
 
     public static void modifyRecord( AgileList agileList ) {
 
         agileList.setTitle( randomString( "title", 40 ) );
+        agileList.setStoryId( (long) 0 );
 
     }
 

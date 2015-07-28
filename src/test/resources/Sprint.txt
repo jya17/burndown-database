@@ -7,13 +7,13 @@ CLASS       Sprint
 [Fields]
 STRING(200) title
 STRING(1000) description
-LONG(10)    backlogId?!   //Backlog list
-LONG(10)    doingId?!     //Doing list
-LONG(10)    doneId?!      //Done list
+LONG(10)    backlogId?   //Backlog list
+LONG(10)    doingId?    //Doing list
+LONG(10)    doneId?      //Done list
 DATE        startDate
 DATE        endDate
 
 [ForeignKeys]
-//backlogId constrainsTo AgileList.key
-//doingId constrainsTo AgileList.key
-//doneId constrainsTo AgileList.key
+backlogId constrainsTo AgileList.key
+doingId constrainsTo AgileList.key
+doneId constrainsTo AgileList.key

@@ -12,4 +12,4 @@ DATE         startDate
 DATE         endDate
 
 [ForeignKeys]
-//backlogId constrainsTo AgileList.key
+backlogId constrainsTo AgileList.key

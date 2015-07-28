@@ -31,16 +31,16 @@ public class TestSprintDao {
         try {
 
             Sprint sprint = TestSprintDao.createSprint();
-            String where = "BACKLOG_ID='" + sprint.getBacklogId() + "' and " + "DOING_ID='" + sprint.getDoingId() + "' and " + "DONE_ID='" + sprint.getDoneId() + "' ";
+            String where = "KEY='" + sprint.getKey() + "' ";
             Map<String, Object> map = new HashMap<String, Object>();
             map.put( "where", where );
 
             int count = sprintDao.create( sprint );
             assertEquals( 1, count );
-            assertNotNull( sprint.getBacklogId() );
+            assertNotNull( sprint.getKey() );
 
             Sprint readRecord = sprintDao.read( map );
-            assertNotNull( readRecord.getBacklogId() );
+            assertNotNull( readRecord.getKey() );
 
             compareRecords( sprint, readRecord );
 
@@ -61,7 +61,7 @@ public class TestSprintDao {
             assertEquals( 1, count );
 
             readRecord = sprintDao.read( map );
-            assertNotNull( readRecord.getBacklogId() );
+            assertNotNull( readRecord.getKey() );
 
             compareRecords( sprint, readRecord );
 
@@ -82,9 +82,9 @@ public class TestSprintDao {
     public static Sprint createSprint() {
         Sprint sprint = new Sprint();
 
-        sprint.setBacklogId( (long) 0 );
         sprint.setTitle( randomString( "title", 200 ) );
         sprint.setDescription( randomString( "description", 1000 ) );
+        sprint.setBacklogId( (long) 0 );
         sprint.setDoingId( (long) 0 );
         sprint.setDoneId( (long) 0 );
         sprint.setStartDate( new Date() );
@@ -97,6 +97,9 @@ public class TestSprintDao {
 
         assertEquals( sprint.getTitle(), readRecord.getTitle() );
         assertEquals( sprint.getDescription(), readRecord.getDescription() );
+        assertEquals( sprint.getBacklogId(), readRecord.getBacklogId() );
+        assertEquals( sprint.getDoingId(), readRecord.getDoingId() );
+        assertEquals( sprint.getDoneId(), readRecord.getDoneId() );
         assertNotSame( sprint.getStartDate(), readRecord.getStartDate() );
         assertNotSame( sprint.getEndDate(), readRecord.getEndDate() );
 
@@ -106,6 +109,9 @@ public class TestSprintDao {
 
         sprint.setTitle( randomString( "title", 200 ) );
         sprint.setDescription( randomString( "description", 1000 ) );
+        sprint.setBacklogId( (long) 0 );
+        sprint.setDoingId( (long) 0 );
+        sprint.setDoneId( (long) 0 );
         sprint.setStartDate( new Date() );
         sprint.setEndDate( new Date() );
 

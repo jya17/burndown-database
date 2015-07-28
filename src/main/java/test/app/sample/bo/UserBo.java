@@ -3,6 +3,7 @@ package test.app.sample.bo;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.session.*;
 import test.app.sample.dao.*;
@@ -112,6 +113,50 @@ public class UserBo {
         }
 
         return result;
+    }
+
+    public List<User> getListByProjectId( Long key ) throws BoException {
+        SqlSession session = null;
+        List<User> list;
+
+        try {
+            session = SessionFactory.getSession();
+            UserDao mapper = session.getMapper( UserDao.class );
+            list = mapper.getListByProjectId( key );
+            session.commit();
+
+        } catch ( Exception e ) {
+            session.rollback();
+            throw new BoException( e );
+
+        } finally { 
+            if ( session != null )
+                session.close();
+        }
+
+        return list;
+    }
+
+    public List<User> getListBySprintId( Long key ) throws BoException {
+        SqlSession session = null;
+        List<User> list;
+
+        try {
+            session = SessionFactory.getSession();
+            UserDao mapper = session.getMapper( UserDao.class );
+            list = mapper.getListBySprintId( key );
+            session.commit();
+
+        } catch ( Exception e ) {
+            session.rollback();
+            throw new BoException( e );
+
+        } finally { 
+            if ( session != null )
+                session.close();
+        }
+
+        return list;
     }
 
     // PROTECTED CODE -->

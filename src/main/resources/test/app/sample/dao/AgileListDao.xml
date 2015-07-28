@@ -4,8 +4,9 @@
 <mapper namespace="test.app.sample.dao.AgileListDao">
 
     <resultMap id="AgileListMapper" type="test.app.sample.domain.AgileList">
-        <result column ="STORY_ID"            property = "storyId" />
+        <result column ="KEY"                 property = "key" />
         <result column ="TITLE"               property = "title" />
+        <result column ="STORY_ID"            property = "storyId" />
     </resultMap>
 
     <select id="read" parameterType="map" resultMap="AgileListMapper">
@@ -14,16 +15,16 @@
     </select>
 
     <insert id="create" parameterType="test.app.sample.domain.AgileList">
-        <selectKey resultType="_long" keyProperty="storyId" order="BEFORE">
+        <selectKey resultType="_long" keyProperty="key" order="BEFORE">
             select AGILE_LIST_SEQ.nextval from dual
         </selectKey>
         insert into AGILE_LIST
         (
-            STORY_ID , TITLE
+            KEY , TITLE , STORY_ID
         )
         values
         (
-            #{storyId} , #{title}
+            #{key} , #{title} , #{storyId}
         )
     </insert>
 
@@ -35,9 +36,10 @@
 
     <update id="update" parameterType="test.app.sample.domain.AgileList">
         update AGILE_LIST set
-            STORY_ID                            = #{storyId} ,
-            TITLE                               = #{title}
-        where STORY_ID = #{storyId}
+            KEY                                 = #{key} ,
+            TITLE                               = #{title} ,
+            STORY_ID                            = #{storyId}
+        where KEY = #{key}
     </update>
 
     <delete id="delete" parameterType="map">

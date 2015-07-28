@@ -1,7 +1,9 @@
 package test.app.sample.domain;
 
 
-//sprintId constrainsTo Sprint.key
+/**
+* The User Table.
+*/
 public class User {
 
     private Long      key;

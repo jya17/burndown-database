@@ -65,10 +65,10 @@ public class AgileListBo {
         return result;
     }
 
-    public int delete( Long storyId ) throws BoException {
+    public int delete( Long key ) throws BoException {
         SqlSession session = null;
         int result = 0;
-        String where = "STORY_ID='" + storyId + "' ";
+        String where = "KEY='" + key + "' ";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put( "where", where );
 
@@ -90,10 +90,10 @@ public class AgileListBo {
         return result;
     }
 
-    public AgileList read( Long storyId ) throws BoException {
+    public AgileList read( Long key ) throws BoException {
         SqlSession session = null;
         AgileList result;
-        String where = "STORY_ID='" + storyId + "' ";
+        String where = "KEY='" + key + "' ";
         Map<String, Object> map = new HashMap<String, Object>();
         map.put( "where", where );
 

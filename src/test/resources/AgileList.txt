@@ -6,7 +6,7 @@ CLASS       AgileList
 
 [Fields]
 STRING(40)	title		 
-LONG(10)    storyId?!    //Cards/stories in the list
+LONG(10)    storyId?   //Cards/stories in the list
 
 [ForeignKeys]
 storyId constrainsTo Story.key

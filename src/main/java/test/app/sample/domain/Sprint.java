@@ -3,23 +3,28 @@ import java.util.Date;
 
 
 
-//doneId constrainsTo AgileList.key
+/**
+* The Sprint Table.
+*/
 public class Sprint {
 
-    private Long      backlogId;            //Backlog list
+    private Long      key;
     private String    title;
     private String    description;
+    private Long      backlogId;            //Backlog list
     private Long      doingId;              //Doing list
     private Long      doneId;               //Done list
     private Date      startDate;
     private Date      endDate;
 
-    public Long      getBacklogId() { return backlogId; }
-    public void      setBacklogId( Long value ) { backlogId = value; }
+    public Long      getKey() { return key; }
+    public void      setKey( Long value ) { key = value; }
     public String    getTitle() { return title; }
     public void      setTitle( String value ) { title = value; }
     public String    getDescription() { return description; }
     public void      setDescription( String value ) { description = value; }
+    public Long      getBacklogId() { return backlogId; }
+    public void      setBacklogId( Long value ) { backlogId = value; }
     public Long      getDoingId() { return doingId; }
     public void      setDoingId( Long value ) { doingId = value; }
     public Long      getDoneId() { return doneId; }

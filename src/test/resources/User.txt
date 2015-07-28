@@ -10,9 +10,9 @@ STRING(200) password*
 STRING(40)  firstName
 STRING(40)  lastName
 STRING(40)  email*
-LONG(10) projectId
-LONG(10) sprintId
+LONG(10) projectId?
+LONG(10) sprintId?
 
 [ForeignKeys]
-//projectId constrainsTo Project.key
-//sprintId constrainsTo Sprint.key
+projectId constrainsTo Project.key
+sprintId constrainsTo Sprint.key

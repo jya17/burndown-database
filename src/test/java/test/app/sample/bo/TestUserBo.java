@@ -1,5 +1,7 @@
 package test.app.sample.bo;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 import org.junit.*;
 import test.app.sample.domain.*;
@@ -26,6 +28,12 @@ public class TestUserBo {
         assertNotNull( readRecord.getKey() );
 
         TestUserDao.compareRecords( user, readRecord );
+
+        List<User> list1= userBo.getListByProjectId( user.getProjectId() ) ; 
+        assertEquals( 1 , list1.size() );
+
+        List<User> list2= userBo.getListBySprintId( user.getSprintId() ) ; 
+        assertEquals( 1 , list2.size() );
 
         TestUserDao.modifyRecord( user );
         count = userBo.update( user );

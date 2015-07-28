@@ -3,6 +3,7 @@ package test.app.sample.dao;
 import java.util.Random;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -41,6 +42,14 @@ public class TestUserDao {
             assertNotNull( readRecord.getKey() );
 
             compareRecords( user, readRecord );
+
+            List<User> list1= userDao.getListByProjectId( user.getProjectId() ) ; 
+            assertEquals( 1, list1.size() );
+            compareRecords( user, list1.get( 0 ) );
+
+            List<User> list2= userDao.getListBySprintId( user.getSprintId() ) ; 
+            assertEquals( 1, list2.size() );
+            compareRecords( user, list2.get( 0 ) );
 
             modifyRecord( user );
             count = userDao.update( user );

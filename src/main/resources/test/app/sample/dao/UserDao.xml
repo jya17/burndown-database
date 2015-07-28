@@ -35,6 +35,14 @@
         )
     </insert>
 
+    <select id="getListByProjectId" parameterType="long" resultMap="UserMapper">
+        select * from USER
+        where PROJECT_ID = #{projectId}
+    </select>
+    <select id="getListBySprintId" parameterType="long" resultMap="UserMapper">
+        select * from USER
+        where SPRINT_ID = #{sprintId}
+    </select>
 
 
     <update id="update" parameterType="test.app.sample.domain.User">

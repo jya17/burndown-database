@@ -24,8 +24,8 @@ public class TestAgileListBo {
         int count = agileListBo.create( agileList );
         assertEquals( 1, count );
 
-        AgileList readRecord = agileListBo.read( agileList.getStoryId() );
-        assertNotNull( readRecord.getStoryId() );
+        AgileList readRecord = agileListBo.read( agileList.getKey() );
+        assertNotNull( readRecord.getKey() );
 
         TestAgileListDao.compareRecords( agileList, readRecord );
 
@@ -36,10 +36,10 @@ public class TestAgileListBo {
         count = agileListBo.update( agileList );
         assertEquals( 1, count );
 
-        count = agileListBo.delete( agileList.getStoryId());
+        count = agileListBo.delete( agileList.getKey());
         assertEquals( 1, count );
 
-        readRecord = agileListBo.read( agileList.getStoryId());
+        readRecord = agileListBo.read( agileList.getKey());
         assertNull( readRecord );
 
     }

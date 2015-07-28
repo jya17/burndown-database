@@ -3,7 +3,9 @@ import java.util.Date;
 
 
 
-//backlogId constrainsTo AgileList.key
+/**
+* The Project Table.
+*/
 public class Project {
 
     private Long      key;
