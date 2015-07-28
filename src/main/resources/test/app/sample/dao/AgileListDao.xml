@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.app.sample.dao.AgileListDao">
+
+    <resultMap id="AgileListMapper" type="test.app.sample.domain.AgileList">
+        <result column ="STORY_ID"            property = "storyId" />
+        <result column ="TITLE"               property = "title" />
+    </resultMap>
+
+    <select id="read" parameterType="map" resultMap="AgileListMapper">
+        select * from AGILE_LIST
+        where ${where}
+    </select>
+
+    <insert id="create" parameterType="test.app.sample.domain.AgileList">
+        <selectKey resultType="_long" keyProperty="storyId" order="BEFORE">
+            select AGILE_LIST_SEQ.nextval from dual
+        </selectKey>
+        insert into AGILE_LIST
+        (
+            STORY_ID , TITLE
+        )
+        values
+        (
+            #{storyId} , #{title}
+        )
+    </insert>
+
+    <select id="getListByStoryId" parameterType="long" resultMap="AgileListMapper">
+        select * from AGILE_LIST
+        where STORY_ID = #{storyId}
+    </select>
+
+
+    <update id="update" parameterType="test.app.sample.domain.AgileList">
+        update AGILE_LIST set
+            STORY_ID                            = #{storyId} ,
+            TITLE                               = #{title}
+        where STORY_ID = #{storyId}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from AGILE_LIST
+        where ${where}
+    </delete>
+
+
+    <!-- PROTECTED CODE -->
+
+</mapper>

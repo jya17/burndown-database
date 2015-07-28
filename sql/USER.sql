@@ -1,0 +1,30 @@
+-- Remove Original Table and Sequence
+
+DROP TABLE USER;
+DROP SEQUENCE USER_SEQ;
+-- Create Table
+
+
+CREATE TABLE USER (
+    KEY                NUMBER(10) NOT NULL,
+    USERNAME           VARCHAR2(40),
+    PASSWORD           VARCHAR2(200) NOT NULL,
+    FIRST_NAME         VARCHAR2(40),
+    LAST_NAME          VARCHAR2(40),
+    EMAIL              VARCHAR2(40) NOT NULL,
+    PROJECT_ID         NUMBER(10),
+    SPRINT_ID          NUMBER(10),
+    CONSTRAINT USER_PK PRIMARY KEY ( KEY ));
+
+CREATE SEQUENCE USER_SEQ;
+
+
+-- Sample Select Statement
+
+SELECT
+    KEY, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, PROJECT_ID, SPRINT_ID 
+from USER
+WHERE
+    KEY = 0;
+
+-- PROTECTED CODE -->

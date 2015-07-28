@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.app.sample.dao.ProjectDao">
+
+    <resultMap id="ProjectMapper" type="test.app.sample.domain.Project">
+        <result column ="KEY"                 property = "key" />
+        <result column ="TITLE"               property = "title" />
+        <result column ="DESCRIPTION"         property = "description" />
+        <result column ="BACKLOG_ID"          property = "backlogId" />
+        <result column ="START_DATE"          property = "startDate" />
+        <result column ="END_DATE"            property = "endDate" />
+    </resultMap>
+
+    <select id="read" parameterType="map" resultMap="ProjectMapper">
+        select * from PROJECT
+        where ${where}
+    </select>
+
+    <insert id="create" parameterType="test.app.sample.domain.Project">
+        <selectKey resultType="_long" keyProperty="key" order="BEFORE">
+            select PROJECT_SEQ.nextval from dual
+        </selectKey>
+        insert into PROJECT
+        (
+            KEY , TITLE , DESCRIPTION , BACKLOG_ID , START_DATE , 
+            END_DATE
+        )
+        values
+        (
+            #{key} , #{title} , #{description} , #{backlogId} , #{startDate} , 
+            #{endDate}
+        )
+    </insert>
+
+    <select id="getListByBacklogId" parameterType="long" resultMap="ProjectMapper">
+        select * from PROJECT
+        where BACKLOG_ID = #{backlogId}
+    </select>
+
+
+    <update id="update" parameterType="test.app.sample.domain.Project">
+        update PROJECT set
+            KEY                                 = #{key} ,
+            TITLE                               = #{title} ,
+            DESCRIPTION                         = #{description} ,
+            BACKLOG_ID                          = #{backlogId} ,
+            START_DATE                          = #{startDate} ,
+            END_DATE                            = #{endDate}
+        where KEY = #{key}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from PROJECT
+        where ${where}
+    </delete>
+
+
+    <!-- PROTECTED CODE -->
+
+</mapper>

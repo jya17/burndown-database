@@ -5,11 +5,11 @@
 CLASS       Project
 
 [Fields]
-STRING(100) title
+STRING(100)  title
 STRING(1000) description
-INTEGER(10) backlogId?   //Complete list of user stories 
-DATE        startDate
-DATE        endDate
+LONG(10)     backlogId?   //Complete list of user stories 
+DATE         startDate
+DATE         endDate
 
 [ForeignKeys]
-backlogId constrainsTo AgileList.key
+//backlogId constrainsTo AgileList.key

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.app.sample.dao.SprintDao">
+
+    <resultMap id="SprintMapper" type="test.app.sample.domain.Sprint">
+        <result column ="BACKLOG_ID"          property = "backlogId" />
+        <result column ="TITLE"               property = "title" />
+        <result column ="DESCRIPTION"         property = "description" />
+        <result column ="DOING_ID"            property = "doingId" />
+        <result column ="DONE_ID"             property = "doneId" />
+        <result column ="START_DATE"          property = "startDate" />
+        <result column ="END_DATE"            property = "endDate" />
+    </resultMap>
+
+    <select id="read" parameterType="map" resultMap="SprintMapper">
+        select * from SPRINT
+        where ${where}
+    </select>
+
+    <insert id="create" parameterType="test.app.sample.domain.Sprint">
+        <selectKey resultType="_long" keyProperty="backlogId" order="BEFORE">
+            select SPRINT_SEQ.nextval from dual
+        </selectKey>
+        insert into SPRINT
+        (
+            BACKLOG_ID , TITLE , DESCRIPTION , DOING_ID , DONE_ID , 
+            START_DATE , END_DATE
+        )
+        values
+        (
+            #{backlogId} , #{title} , #{description} , #{doingId} , #{doneId} , 
+            #{startDate} , #{endDate}
+        )
+    </insert>
+
+    <select id="getListByBacklogId" parameterType="long" resultMap="SprintMapper">
+        select * from SPRINT
+        where BACKLOG_ID = #{backlogId}
+    </select>
+    <select id="getListByDoingId" parameterType="long" resultMap="SprintMapper">
+        select * from SPRINT
+        where DOING_ID = #{doingId}
+    </select>
+    <select id="getListByDoneId" parameterType="long" resultMap="SprintMapper">
+        select * from SPRINT
+        where DONE_ID = #{doneId}
+    </select>
+
+
+    <update id="update" parameterType="test.app.sample.domain.Sprint">
+        update SPRINT set
+            BACKLOG_ID                          = #{backlogId} ,
+            TITLE                               = #{title} ,
+            DESCRIPTION                         = #{description} ,
+            DOING_ID                            = #{doingId} ,
+            DONE_ID                             = #{doneId} ,
+            START_DATE                          = #{startDate} ,
+            END_DATE                            = #{endDate}
+        where BACKLOG_ID = #{backlogId}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from SPRINT
+        where ${where}
+    </delete>
+
+
+    <!-- PROTECTED CODE -->
+
+</mapper>

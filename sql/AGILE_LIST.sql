@@ -1,0 +1,24 @@
+-- Remove Original Table and Sequence
+
+DROP TABLE AGILE_LIST;
+DROP SEQUENCE AGILE_LIST_SEQ;
+-- Create Table
+
+
+CREATE TABLE AGILE_LIST (
+    STORY_ID           NUMBER(10) NOT NULL,
+    TITLE              VARCHAR2(40),
+    CONSTRAINT AGILE_LIST_PK PRIMARY KEY ( STORY_ID ));
+
+CREATE SEQUENCE AGILE_LIST_SEQ;
+
+
+-- Sample Select Statement
+
+SELECT
+    STORY_ID, TITLE 
+from AGILE_LIST
+WHERE
+    STORY_ID = 0;
+
+-- PROTECTED CODE -->

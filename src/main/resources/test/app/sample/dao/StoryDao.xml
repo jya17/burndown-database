@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.app.sample.dao.StoryDao">
+
+    <resultMap id="StoryMapper" type="test.app.sample.domain.Story">
+        <result column ="KEY"                 property = "key" />
+        <result column ="DESCRIPTION"         property = "description" />
+        <result column ="ESTIMATED_HOURS"     property = "estimatedHours" />
+        <result column ="REMAINING_HOURS"     property = "remainingHours" />
+        <result column ="PROJECT_ID"          property = "projectId" />
+    </resultMap>
+
+    <select id="read" parameterType="map" resultMap="StoryMapper">
+        select * from STORY
+        where ${where}
+    </select>
+
+    <insert id="create" parameterType="test.app.sample.domain.Story">
+        <selectKey resultType="_long" keyProperty="key" order="BEFORE">
+            select STORY_SEQ.nextval from dual
+        </selectKey>
+        insert into STORY
+        (
+            KEY , DESCRIPTION , ESTIMATED_HOURS , REMAINING_HOURS , PROJECT_ID
+        )
+        values
+        (
+            #{key} , #{description} , #{estimatedHours} , #{remainingHours} , #{projectId}
+        )
+    </insert>
+
+
+
+    <update id="update" parameterType="test.app.sample.domain.Story">
+        update STORY set
+            KEY                                 = #{key} ,
+            DESCRIPTION                         = #{description} ,
+            ESTIMATED_HOURS                     = #{estimatedHours} ,
+            REMAINING_HOURS                     = #{remainingHours} ,
+            PROJECT_ID                          = #{projectId}
+        where KEY = #{key}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from STORY
+        where ${where}
+    </delete>
+
+
+    <!-- PROTECTED CODE -->
+
+</mapper>
