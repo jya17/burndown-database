@@ -1,8 +1,8 @@
 /**
-* The List Table.
+* The AgileList Table.
 */
 [Settings]
-CLASS       List
+CLASS       AgileList
 
 [Fields]
 LONG(10)    storyId?!    //Cards/stories in the list

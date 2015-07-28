@@ -10,6 +10,6 @@ LONG(10)    doingId?!     //Doing list
 LONG(10)    doneId?!      //Done list
 
 [ForeignKeys]
-backlogId constrainsTo List.key
-doingId constrainsTo List.key
-doneId constrainsTo List.key
+backlogId constrainsTo AgileList.key
+doingId constrainsTo AgileList.key
+doneId constrainsTo AgileList.key
