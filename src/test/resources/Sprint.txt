@@ -1,0 +1,15 @@
+/**
+* The Sprint Table.
+*/
+[Settings]
+CLASS       Sprint
+
+[Fields]
+LONG(10)    backlogId?!   //Backlog list
+LONG(10)    doingId?!     //Doing list
+LONG(10)    doneId?!      //Done list
+
+[ForeignKeys]
+backlogId constrainsTo List.key
+doingId constrainsTo List.key
+doneId constrainsTo List.key

@@ -1,0 +1,8 @@
+/**
+* The Project Table.
+*/
+[Settings]
+CLASS       Project
+
+[Fields]
+INTEGER(10) backlogId BACKLOG_ID?

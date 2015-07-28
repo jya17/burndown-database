@@ -1,0 +1,11 @@
+/**
+* The List Table.
+*/
+[Settings]
+CLASS       List
+
+[Fields]
+LONG(10)    storyId?!    //Cards/stories in the list
+
+[ForeignKeys]
+storyId constrainsTo Story.key

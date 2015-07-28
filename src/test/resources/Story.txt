@@ -1,0 +1,11 @@
+/**
+* The Story Table.
+*/
+[Settings]
+CLASS       Story
+
+[Fields]
+STRING(500)  description
+INTEGER(3)   estimatedHours //Total time it will take to complete
+INTEGER(3)   remainingHours //Remaining time it will take to complete
+INTEGER(10)  projectId      //Project's backlog
