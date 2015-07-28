@@ -5,7 +5,7 @@
 CLASS       Project
 
 [Fields]
-INTEGER(10) backlogId?
+INTEGER(10) backlogId?   //Complete list of user stories 
 
 [ForeignKeys]
 backlogId constrainsTo AgileList.key
